@@ -1,0 +1,35 @@
+@import '../../main.scss';
+
+header {
+    width: 100%;
+    @include display(flex, row, space-between, center);
+    padding: 5px 20px;
+
+    img {
+        width: 200px;
+    }
+
+    nav {
+
+
+        a {
+            text-decoration: none;
+            margin-right: 8px;
+            font-weight: 500;
+            color: $color-tertiary;
+            font-size: bold;
+
+            i {
+                margin-right: 5px;
+            }
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+
+    }
+
+
+}

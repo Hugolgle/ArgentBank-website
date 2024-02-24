@@ -1,50 +1,7 @@
 @import './main.scss';
 
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
+  min-width: 100vh;
+  margin: 0;
   text-align: center;
-}
-
-header {
-  width: 100%;
-  @include display(flex, row, space-between, center);
-  margin: 20px 0;
-
-  img {
-    @media screen and (max-width: 650px) {
-      width: 145px;
-    }
-  }
-
-  nav {
-
-    a {
-      text-decoration: none;
-      padding: 0 10px;
-      font-weight: 500;
-      color: $color-secondary;
-      font-size: 24px;
-
-      @media screen and (max-width: 650px) {
-        font-size: 12px;
-        text-transform: uppercase;
-        padding: 0;
-        margin-left: 25px;
-      }
-    }
-
-    a.active {
-      text-decoration: underline;
-    }
-  }
-
-  @media screen and (max-width: 1350px) {
-    padding: 0 50px;
-  }
-
-  @media screen and (max-width: 650px) {
-    padding: 0 15px;
-  }
-
 }

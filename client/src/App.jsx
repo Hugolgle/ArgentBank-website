@@ -1,6 +1,6 @@
 import './App.scss'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
-import Header from './components/Header/header.jsx'
+import Header from './containers/Header/header.jsx'
 import Home from './pages/Home/home.jsx'
 import SignIn from './pages/SignIn/sign-in.jsx'
 import User from './pages/User/user.jsx'
