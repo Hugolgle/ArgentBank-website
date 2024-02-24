@@ -1,4 +1,5 @@
 import './form.scss'
+import Button from '../../components/Button/button.jsx'
 
 export default function Form() {
     return <>
@@ -18,11 +19,9 @@ export default function Form() {
                     <input type="checkbox" id="remember-me" />
                     <label for="remember-me">Remember me</label>
                 </div>
-                <button class="sign-in-button">Sign In</button>
+                <Button text="Sign In" />
 
             </form>
         </div>
     </>
-
-
 }

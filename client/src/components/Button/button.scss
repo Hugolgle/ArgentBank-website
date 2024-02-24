@@ -1,0 +1,19 @@
+@import '../../main.scss';
+
+button.button {
+    width: 100%;
+    padding: 8px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-top: 1rem;
+    border-color: $color-secondary;
+    background-color: $color-secondary;
+    color: $color-primary;
+    border: none;
+    cursor: pointer;
+    transition: .3s;
+}
+
+button.button:hover {
+    opacity: 0.85;
+}

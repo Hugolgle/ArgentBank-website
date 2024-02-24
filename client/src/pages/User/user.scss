@@ -1,0 +1,6 @@
+@import '../../main.scss';
+
+section.user {
+    background-color: #12002b;
+    @include display(flex, column, center, center);
+}

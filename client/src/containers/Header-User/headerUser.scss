@@ -1,0 +1,10 @@
+@import '../../main.scss';
+
+div.header {
+    color: $color-primary;
+
+    h1 {
+        margin: 0;
+        padding: 16px 0;
+    }
+}

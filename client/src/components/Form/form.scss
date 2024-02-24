@@ -36,23 +36,5 @@ div.form {
                 margin-left: 0.25rem;
             }
         }
-
-        button.sign-in-button {
-            width: 100%;
-            padding: 8px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            margin-top: 1rem;
-            border-color: $color-secondary;
-            background-color: $color-secondary;
-            color: $color-primary;
-            border: none;
-            cursor: pointer;
-            transition: .3s;
-        }
-
-        button.sign-in-button:hover {
-            opacity: 0.85;
-        }
     }
 }
