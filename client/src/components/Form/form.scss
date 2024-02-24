@@ -1,0 +1,58 @@
+@import '../../main.scss';
+
+div.form {
+    background-color: white;
+    padding: 2rem;
+    margin: 94px 0;
+
+    h1 {
+        color: $color-tertiary;
+    }
+
+    form {
+        @include display(flex, column, center, start);
+        color: $color-tertiary;
+
+        div.input-wrapper {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+            margin-bottom: 1rem;
+
+            label {
+                font-weight: bold;
+            }
+
+            input {
+                padding: 5px;
+                font-size: 1.2rem;
+            }
+        }
+
+        div.input-remember {
+            display: flex;
+
+            label {
+                margin-left: 0.25rem;
+            }
+        }
+
+        button.sign-in-button {
+            width: 100%;
+            padding: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-top: 1rem;
+            border-color: $color-secondary;
+            background-color: $color-secondary;
+            color: $color-primary;
+            border: none;
+            cursor: pointer;
+            transition: .3s;
+        }
+
+        button.sign-in-button:hover {
+            opacity: 0.85;
+        }
+    }
+}

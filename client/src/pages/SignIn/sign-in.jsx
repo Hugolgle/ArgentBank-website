@@ -1,7 +1,13 @@
+import './sign-in.scss'
+import Form from '../../components/Form/form.jsx'
+import Footer from '../../containers/Footer/footer.jsx'
+
 export default function SignIn() {
     return <>
 
-        <h1>Hello Sign in !</h1>
-
+        <section className="signIn">
+            <Form />
+        </section>
+        <Footer />
     </>
 }

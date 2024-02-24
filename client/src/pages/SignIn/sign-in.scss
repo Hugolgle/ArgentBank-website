@@ -1,0 +1,7 @@
+@import '../../main.scss';
+
+section.signIn {
+    background-color: #12002b;
+    height: 100%;
+    @include display(flex, row, center, center);
+}
