@@ -7,11 +7,13 @@
 
 body {
     margin: 0;
+    // min-height: 100vh;
 }
 
 $color-primary : #fff;
 $color-secondary : #00bc77;
 $color-tertiary : #2c3e50;
+$color-quaternary : #222222;
 
 @mixin display($display, $direction, $justify, $align) {
     display: $display;

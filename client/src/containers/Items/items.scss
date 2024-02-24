@@ -1,0 +1,5 @@
+@import '../../main.scss';
+
+section.items {
+    @include display(flex, row, space-around, start);
+}
