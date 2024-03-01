@@ -1,9 +1,10 @@
 import './App.scss'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
-import Header from './containers/Header/header.jsx'
-import Home from './pages/Home/home.jsx'
-import SignIn from './pages/SignIn/sign-in.jsx'
-import User from './pages/User/user.jsx'
+import Header from './src/containers/Header/header.jsx'
+import Home from './src/pages/Home/home.jsx'
+import SignIn from './src/pages/SignIn/sign-in.jsx'
+import User from './src/pages/User/user.jsx'
+
 
 const router = createBrowserRouter([
   {
@@ -28,7 +29,12 @@ const router = createBrowserRouter([
 
 
 function App() {
-  return <RouterProvider router={router} />
+  return (
+
+  <RouterProvider router={router} />
+
+
+  )
 }
 
 export default App
