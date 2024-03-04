@@ -2,14 +2,14 @@ import axios from 'axios';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 export const loginUser = createAsyncThunk(
-    'user/loginUser',
-    async(userCredential)=>{
-          const request = await axios.post(`http://127.0.0.1:3001/api/v1/user/login`, userCredential);
-          const response = await request.data;
-          localStorage.setItem("token", JSON.stringify(response.body.token))
-          return response;
-    }
-  );
+  'user/loginUser',
+  async (userCredential) => {
+    const request = await axios.post(`http://127.0.0.1:3001/api/v1/user/login`, userCredential);
+    const response = await request.data;
+    localStorage.setItem("token", response.body.token)
+    return response;
+  }
+);
 
 const userSlice = createSlice({
   name: 'user',
@@ -17,7 +17,12 @@ const userSlice = createSlice({
     token: null,
     userInfo: ""
   },
-  reducers: {},
+  reducers: {
+    reset: (state) => {
+      state.token = null;
+      state.userInfo = "";
+    }
+  },
   extraReducers: (builder) => {
     builder
       .addCase(loginUser.fulfilled, (state, action) => {
@@ -30,3 +35,4 @@ const userSlice = createSlice({
 });
 
 export default userSlice.reducer;
+export const { reset } = userSlice.actions;
