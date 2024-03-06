@@ -1,11 +1,23 @@
 import './headerUser.scss'
-import Button from '../../components/Button/button.jsx'
+import { useSelector } from 'react-redux';
+import { useState } from 'react';
+import FormEdit from './formEdit.jsx';
 
 export default function HeaderUser() {
+    const firstName = useSelector((state) => state.user.userInfo.firstName);
+    const lastName = useSelector((state) => state.user.userInfo.lastName);
+
+
+
     return <>
+
+
         <div className="header">
-            <h1>Welcome back <br />Tony Jarvis</h1>
-            <Button text="Edit" />
+            <h1>Welcome back <br />{firstName} {lastName}</h1>
+
+            <FormEdit />
         </div>
+
     </>
+
 }

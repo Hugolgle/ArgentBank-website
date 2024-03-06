@@ -25,6 +25,20 @@ export const profileUser = createAsyncThunk(
   }
 );
 
+export const userInfoEdit = createAsyncThunk(
+  'user/userInfoEdit',
+  async (infoEdit) => {
+    const request = await axios.put(`http://127.0.0.1:3001/api/v1/user/profile`, infoEdit, {
+      headers: {
+        "Accept": "application/json",
+        "Authorization": `Bearer${localStorage.getItem("token")}`
+      }
+    });
+    const response = await request.data;
+    return response;
+  }
+);
+
 const userSlice = createSlice({
   name: 'user',
   initialState: {
@@ -49,6 +63,12 @@ const userSlice = createSlice({
         state.userInfo = action.payload.body;
       })
       .addCase(profileUser.rejected, (state, action) => {
+        state.userInfo = null;
+      })
+      .addCase(userInfoEdit.fulfilled, (state, action) => {
+        state.userInfo = action.payload.body;
+      })
+      .addCase(userInfoEdit.rejected, (state, action) => {
         state.userInfo = null;
       });
   },
