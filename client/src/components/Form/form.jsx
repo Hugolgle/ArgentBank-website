@@ -1,6 +1,6 @@
 import './form.scss'
 import Button from '../../components/Button/button.jsx'
-import { loginUser } from "../../redux/userSlice.js";
+import { loginUser, profileUser } from "../../redux/userSlice.js";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import React, { useState } from 'react';
@@ -17,34 +17,39 @@ export default function Form() {
     e.preventDefault();
     let userCredential = {
       email: username,
-      password: password,
+      password,
     };
 
     dispatch(loginUser(userCredential))
+    dispatch(profileUser())
 
     setUsername("");
     setPassword("");
+
     navigate("/");
   };
 
   return <>
     <div className="form">
-      <i class="fa fa-user-circle"></i>
+      <i className="fa fa-user-circle"></i>
       <h1>Sign In</h1>
       <form onSubmit={handleSubmit}>
-        <div class="input-wrapper">
+
+        <div className="input-wrapper">
           <label for="username">Username</label>
           <input type="text" id="username" value={username} onChange={(e) => setUsername(e.target.value)} />
-
         </div>
-        <div class="input-wrapper">
+
+        <div className="input-wrapper">
           <label for="password">Password</label>
           <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
         </div>
-        <div class="input-remember">
+
+        <div className="input-remember">
           <input type="checkbox" id="remember-me" />
           <label for="remember-me">Remember me</label>
         </div>
+
         <Button text="Sign In" />
 
       </form>

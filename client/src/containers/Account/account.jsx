@@ -4,12 +4,12 @@ import Button from '../../components/Button/button.jsx'
 export default function Account(props) {
     return <>
         <div className='account'>
-            <div class="content-wrapper">
-                <h3 class="title">{props.title}</h3>
-                <p class="amount">{props.amount}</p>
-                <p class="amount-description">{props.amountDescription}</p>
+            <div className="content-wrapper">
+                <h3 className="title">{props.title}</h3>
+                <p className="amount">{props.amount}</p>
+                <p className="amount-description">{props.amountDescription}</p>
             </div>
-            <div class="content-wrapper cta">
+            <div className="content-wrapper cta">
                 <Button text="View transactions" />
             </div>
         </div>

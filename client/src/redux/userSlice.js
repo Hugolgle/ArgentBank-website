@@ -11,6 +11,20 @@ export const loginUser = createAsyncThunk(
   }
 );
 
+export const profileUser = createAsyncThunk(
+  'user/profileUser',
+  async () => {
+    const request = await axios.post(`http://127.0.0.1:3001/api/v1/user/profile`, null, {
+      headers: {
+        "Accept": "application/json",
+        "Authorization": `Bearer${localStorage.getItem("token")}`
+      }
+    });
+    const response = await request.data;
+    return response;
+  }
+);
+
 const userSlice = createSlice({
   name: 'user',
   initialState: {
@@ -30,6 +44,12 @@ const userSlice = createSlice({
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.token = null;
+      })
+      .addCase(profileUser.fulfilled, (state, action) => {
+        state.userInfo = action.payload.body;
+      })
+      .addCase(profileUser.rejected, (state, action) => {
+        state.userInfo = null;
       });
   },
 });
