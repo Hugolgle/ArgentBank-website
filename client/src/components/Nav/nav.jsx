@@ -9,7 +9,7 @@ export default function Nav() {
     const dispatch = useDispatch();
 
     const token = useSelector((state) => state.user.token);
-    const userName = useSelector((state) => state.user.userInfo.userName);
+    const userName = useSelector((state) => state.user?.userInfo?.userName);
     const deconnexion = (e) => {
         e.preventDefault();
         localStorage.removeItem("token");

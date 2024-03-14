@@ -101,6 +101,154 @@ paths:
           description: Invalid Fields
         '500':
           description: Internal Server Error
+
+
+
+
+
+
+
+  /transactions:
+    get:
+      summary: Récupérer toutes les transactions du mois en cours groupées par compte
+      description: ''
+      parameters:
+        - name: mois
+          in: query
+          type: string
+          description: Le mois pour lequel récupérer les transactions (format 'YYYY-MM')
+      responses:
+        200:
+          description: Succès
+          schema:
+            type: object
+            properties:
+              accounts:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    accountId:
+                      type: string
+                    transactions:
+                      type: array
+          examples:
+            application/json:
+              accounts:
+                - accountId: "000"
+                  transactions:
+                    - id: "1"
+                      amount: 5.00
+                      description: "Boulangerie"
+                      category: "Alimentation"
+                      date: "2024-03-14"
+                - accountId: "111"
+                  transactions:
+                    - id: "2"
+                      amount: 10.0
+                      description: "Cinema"
+                      category: "Loisirs"
+                      date: "2024-03-14"
+
+  /transactions/{transactionId}:
+    get:
+      summary: Récupérer les informations d'une transaction
+      description: ''
+      parameters:
+        - name: transactionId
+          in: path
+          required: true
+          type: string
+          description: L'ID de la transaction
+      responses:
+        200:
+          description: Succès
+          examples:
+            application/json:
+              id: "1"
+              amount: 5.00
+              description: "Boulangerie"
+              date: "2024-03-14"
+              accountId: "000"
+              category: "Alimentation"
+              note: ''
+        404:
+          description: Transaction non trouvée
+    post:
+        summary: Ajouter une note ou catégorie à une transaction
+        description: Permet à l'utilisateur d'ajouter une catégorie ou une note à une transaction existante.
+        parameters:
+          - name: transactionId
+            in: path
+            required: true
+            type: string
+            description: L'ID de la transaction à modifier
+          - name: updateInfo
+            in: body
+            required: true
+            schema:
+              type: object
+              properties:
+                category:
+                  type: string
+                  description: La nouvelle catégorie
+                note:
+                  type: string
+                  description: La nouvelle note
+        responses:
+          200:
+            description: Succès
+            schema:
+              $ref: '#/definitions/Transaction'
+            examples:
+              application/json:
+                id: "1"
+                mount: 5.00
+                description: "Boulangerie"
+                date: "2024-03-14"
+                accountId: "000"
+                category: "Alimentation"
+                note: "note ajoutée"
+          404:
+            description: Transaction non trouvée
+    put:
+      summary: Modifier la note ou catégorie d'une transaction
+      description: Permet à l'utilisateur de modifier la note ou la catégorie d'une transaction existante.
+      parameters:
+        - name: transactionId
+          in: path
+          required: true
+          type: string
+          description: L'ID de la transaction à mettre à jour
+        - name: updateInfo
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              category:
+                type: string
+                description: La nouvelle catégorie
+              note:
+                type: string
+                description: La nouvelle note
+      responses:
+        200:
+          description: Succès
+          schema:
+            $ref: '#/definitions/Transaction'
+          examples:
+            application/json:
+              id: "1"
+              mount: 5.00
+              description: "Boulangerie"
+              date: "2024-03-14"
+              accountId: "000"
+              category: "Alimentation"
+              note: "note modifié"
+        404:
+          description: Transaction non trouvée
+
 securityDefinitions:
   Bearer:
     type: apiKey

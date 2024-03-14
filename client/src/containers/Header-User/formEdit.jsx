@@ -1,17 +1,17 @@
 import './formEdit.scss'
 import Button from '../../components/Button/button.jsx'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
-import { userInfoEdit } from '../../redux/userSlice.js';
+import { profileUser, userInfoEdit } from '../../redux/userSlice.js';
 
-export default function formEdit() {
+export default function FormEdit() {
     const dispatch = useDispatch();
+    const username = useSelector((state) => state.user.userInfo.userName);
 
     const [vueForm, setVueForm] = useState(true);
-
-    const [userName, setUsername] = useState('');
-    const [firstName, setfirstName] = useState('');
-    const [lastName, setlastName] = useState('');
+    const [userName, setUsername] = useState(username);
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
 
     const vueEdit = () => {
         setVueForm(!vueForm)
@@ -19,15 +19,13 @@ export default function formEdit() {
 
     const saveEdit = (e) => {
         e.preventDefault();
-        let infoEdit = {
+        const infoEdit = {
             userName: userName,
             firstName: firstName,
             lastName: lastName,
         };
 
-        console.log(infoEdit);
         dispatch(userInfoEdit(infoEdit));
-
     }
 
 
@@ -55,7 +53,7 @@ export default function formEdit() {
                         type="text"
                         id="firstname"
                         value={firstName}
-                        onChange={(e) => setfirstName(e.target.value)}
+                        onChange={(e) => setFirstName(e.target.value)}
                         disabled
                     />
                 </div>
@@ -65,7 +63,7 @@ export default function formEdit() {
                         type="text"
                         id="lastname"
                         value={lastName}
-                        onChange={(e) => setlastName(e.target.value)}
+                        onChange={(e) => setLastName(e.target.value)}
                         disabled
                     />
                 </div>

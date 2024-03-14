@@ -13,11 +13,11 @@ export const loginUser = createAsyncThunk(
 
 export const profileUser = createAsyncThunk(
   'user/profileUser',
-  async () => {
+  async (token) => {
     const request = await axios.post(`http://127.0.0.1:3001/api/v1/user/profile`, null, {
       headers: {
         "Accept": "application/json",
-        "Authorization": `Bearer${localStorage.getItem("token")}`
+        "Authorization": `Bearer ${token}`
       }
     });
     const response = await request.data;
@@ -36,6 +36,7 @@ export const userInfoEdit = createAsyncThunk(
     });
     const response = await request.data;
     return response;
+
   }
 );
 
@@ -43,21 +44,26 @@ const userSlice = createSlice({
   name: 'user',
   initialState: {
     token: null,
-    userInfo: ""
+    userInfo: "",
+    error: null
   },
   reducers: {
     reset: (state) => {
       state.token = null;
       state.userInfo = "";
+      state.error = null;
     }
   },
   extraReducers: (builder) => {
     builder
       .addCase(loginUser.fulfilled, (state, action) => {
         state.token = action.payload.body.token;
+        state.error = null;
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.token = null;
+        state.userInfo = null;
+        state.error = "Erreur dans le login ou le mot de passe !";
       })
       .addCase(profileUser.fulfilled, (state, action) => {
         state.userInfo = action.payload.body;
@@ -70,6 +76,7 @@ const userSlice = createSlice({
       })
       .addCase(userInfoEdit.rejected, (state, action) => {
         state.userInfo = null;
+        state.error = "Erreur modification"
       });
   },
 });
