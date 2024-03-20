@@ -113,10 +113,11 @@ paths:
       summary: Récupérer toutes les transactions du mois en cours groupées par compte
       description: ''
       parameters:
-        - name: mois
-          in: query
+        - name: Authorization
+          in: header
           type: string
-          description: Le mois pour lequel récupérer les transactions (format 'YYYY-MM')
+          required: true
+          description: token
       responses:
         200:
           description: Succès
@@ -174,43 +175,6 @@ paths:
               note: ''
         404:
           description: Transaction non trouvée
-    post:
-        summary: Ajouter une note ou catégorie à une transaction
-        description: Permet à l'utilisateur d'ajouter une catégorie ou une note à une transaction existante.
-        parameters:
-          - name: transactionId
-            in: path
-            required: true
-            type: string
-            description: L'ID de la transaction à modifier
-          - name: updateInfo
-            in: body
-            required: true
-            schema:
-              type: object
-              properties:
-                category:
-                  type: string
-                  description: La nouvelle catégorie
-                note:
-                  type: string
-                  description: La nouvelle note
-        responses:
-          200:
-            description: Succès
-            schema:
-              $ref: '#/definitions/Transaction'
-            examples:
-              application/json:
-                id: "1"
-                mount: 5.00
-                description: "Boulangerie"
-                date: "2024-03-14"
-                accountId: "000"
-                category: "Alimentation"
-                note: "note ajoutée"
-          404:
-            description: Transaction non trouvée
     put:
       summary: Modifier la note ou catégorie d'une transaction
       description: Permet à l'utilisateur de modifier la note ou la catégorie d'une transaction existante.

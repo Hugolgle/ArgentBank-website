@@ -6,12 +6,14 @@ import { profileUser, userInfoEdit } from '../../redux/userSlice.js';
 
 export default function FormEdit() {
     const dispatch = useDispatch();
-    const username = useSelector((state) => state.user.userInfo.userName);
+    const username = useSelector((state) => state.user.userInfo.userName); // Recuperation des info de l'utilisateurs
+    const firstame = useSelector((state) => state.user.userInfo.firstName); // Recuperation des info de l'utilisateurs
+    const lastname = useSelector((state) => state.user.userInfo.lastName); // Recuperation des info de l'utilisateurs
 
     const [vueForm, setVueForm] = useState(true);
     const [userName, setUsername] = useState(username);
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
+    const [firstName, setFirstName] = useState(firstame);
+    const [lastName, setLastName] = useState(lastname);
 
     const vueEdit = () => {
         setVueForm(!vueForm)

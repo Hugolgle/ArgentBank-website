@@ -7,15 +7,17 @@ import React, { useEffect, useState } from 'react';
 
 export default function Form() {
 
-  const message = useSelector((state) => state.user.error);
-  const token = useSelector((state) => state.user.token);
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const message = useSelector((state) => state.user.error); // Récuperation du message d'error
+  const token = useSelector((state) => state.user.token); // Récuperation du token 
+  const [username, setUsername] = useState(''); // Utilisation de useState pour recuperer le username
+  const [password, setPassword] = useState(''); // Utilisation de useState pour recuperer le password
 
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const dispatch = useDispatch(); // Utilisation de useDispatch pour parler au store
+  const navigate = useNavigate();// Utilisation de useState pour recuperer le password
 
-  useEffect(() => {
+  useEffect(() => { // Lorsque la valeur de token change, on déclenche une action pour récupérer 
+    // les informations de profil de l'utilisateur à partir de l'API, mais seulement 
+    // si token est défini.
 
     if (token) {
       dispatch(profileUser(token))
